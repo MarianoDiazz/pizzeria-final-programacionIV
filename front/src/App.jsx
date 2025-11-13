@@ -12,6 +12,9 @@ function App() {
         <Link to="/">Inicio</Link>
         <Link to="/admin">Panel Admin</Link>
       </nav>
+      <h1 className="text-4xl font-bold text-red-500 underline">
+        Tailwind funcionando 🍕🔥
+      </h1>
 
       <Routes>
         <Route path="/" element={<Home />} />
