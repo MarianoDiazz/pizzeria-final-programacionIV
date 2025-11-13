@@ -8,19 +8,21 @@ export default function ProductCard({ producto }) {
     addToCart(producto);
     Swal.fire({
       icon: "success",
-      title: "¡Agregado al carrito!",
-      text: `${producto.nombre} ha sido agregado`,
+      title: "¡Agregado!",
+      text: `${producto.nombre} se agregó al carrito`,
       timer: 1500,
       showConfirmButton: false,
       toast: true,
       position: "top-end",
+      background: "#8B4513",
+      color: "#fff",
     });
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group">
+    <div className="bg-white rounded-xl shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group border border-amber-100">
       {/* Imagen */}
-      <div className="relative overflow-hidden h-56 bg-gradient-to-br from-orange-100 to-red-100">
+      <div className="relative overflow-hidden h-48 bg-gradient-to-br from-amber-100 to-orange-100">
         {producto.imagen_url ? (
           <img
             src={producto.imagen_url}
@@ -29,42 +31,46 @@ export default function ProductCard({ producto }) {
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <span className="text-8xl group-hover:rotate-12 transition-transform duration-300">
+            <span className="text-7xl group-hover:rotate-12 transition-transform duration-300">
               🍕
             </span>
           </div>
         )}
         
-        {/* Badge de disponibilidad */}
         {!producto.disponible && (
-          <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
-            Agotado
+          <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+            <span className="bg-red-600 text-white px-4 py-2 rounded-full font-bold">
+              Agotado
+            </span>
           </div>
         )}
       </div>
 
       {/* Contenido */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-red-600 transition-colors">
+      <div className="p-5">
+        <h3 className="text-lg font-bold text-amber-900 mb-2 group-hover:text-amber-700 transition-colors">
           {producto.nombre}
         </h3>
         
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-          {producto.descripcion || "Deliciosa pizza con ingredientes frescos"}
+        <p className="text-amber-700 text-sm mb-4 line-clamp-2 leading-relaxed">
+          {producto.descripcion || "Pizza artesanal con ingredientes frescos"}
         </p>
 
         {/* Precio y botón */}
         <div className="flex items-center justify-between">
-          <div className="text-3xl font-bold text-red-600">
-            ${producto.precio}
+          <div>
+            <p className="text-xs text-amber-600 mb-1">Precio</p>
+            <p className="text-2xl font-bold text-amber-900">
+              ${producto.precio}
+            </p>
           </div>
           
           <button
             onClick={handleAdd}
             disabled={!producto.disponible}
-            className={`px-5 py-3 rounded-full font-semibold transition-all duration-300 transform ${
+            className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
               producto.disponible
-                ? "bg-gradient-to-r from-red-600 to-orange-500 text-white hover:shadow-lg hover:scale-110 active:scale-95"
+                ? "bg-amber-800 hover:bg-amber-900 text-white shadow-md hover:shadow-lg active:scale-95"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >
@@ -73,8 +79,8 @@ export default function ProductCard({ producto }) {
         </div>
       </div>
 
-      {/* Efecto de brillo decorativo */}
-      <div className="h-1 bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+      {/* Borde decorativo inferior */}
+      <div className="h-1 bg-gradient-to-r from-amber-600 via-orange-500 to-amber-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
     </div>
   );
 }

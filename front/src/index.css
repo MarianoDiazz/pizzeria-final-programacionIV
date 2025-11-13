@@ -3,8 +3,9 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
-/* Animaciones personalizadas para Bella Napoli */
+/* Estilos globales para Bella Napoli - Diseño Italiano Elegante */
 
+/* Animaciones suaves */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -13,6 +14,17 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -30,7 +42,7 @@ body {
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.6;
   }
 }
 
@@ -43,9 +55,14 @@ body {
   }
 }
 
-/* Clases de animación */
+/* Clases de utilidad */
 .animate-fadeIn {
   animation: fadeIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.5s ease-out forwards;
   opacity: 0;
 }
 
@@ -61,13 +78,48 @@ body {
   animation: spin 2s linear infinite;
 }
 
-/* Delays para animaciones escalonadas */
-.delay-75 {
-  animation-delay: 0.075s;
+/* Transiciones suaves globales */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.delay-150 {
-  animation-delay: 0.15s;
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fef3c7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8B4513;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6B3410;
+}
+
+/* Efecto de enfoque mejorado para accesibilidad */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #8B4513;
+  outline-offset: 2px;
+}
+
+/* Sombras elegantes personalizadas */
+.shadow-elegant {
+  box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1), 
+              0 2px 4px rgba(139, 69, 19, 0.06);
+}
+
+.shadow-elegant-lg {
+  box-shadow: 0 10px 15px rgba(139, 69, 19, 0.1), 
+              0 4px 6px rgba(139, 69, 19, 0.05);
 }
 
 /* Efectos hover suaves */
@@ -76,55 +128,58 @@ body {
 }
 
 .hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(139, 69, 19, 0.15);
 }
 
-/* Gradientes animados */
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animated-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 3s ease infinite;
-}
-
-/* Efecto de brillo */
-@keyframes shine {
-  0% {
-    background-position: -200%;
-  }
-  100% {
-    background-position: 200%;
-  }
-}
-
-.shine-effect {
-  position: relative;
+/* Line clamp para textos */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.shine-effect::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  animation: shine 3s infinite;
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Overlay oscuro para modales */
+.overlay-dark {
+  background: rgba(44, 24, 16, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+/* Personalización de SweetAlert2 */
+.swal2-popup {
+  border-radius: 1rem !important;
+  font-family: inherit !important;
+}
+
+.swal2-title {
+  color: #8B4513 !important;
+}
+
+.swal2-confirm {
+  background-color: #8B4513 !important;
+  border-radius: 0.5rem !important;
+}
+
+.swal2-confirm:hover {
+  background-color: #6B3410 !important;
+}
+
+/* Utilidades adicionales */
+.text-balance {
+  text-wrap: balance;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #8B4513, #D2691E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
