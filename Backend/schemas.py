@@ -54,8 +54,17 @@ class DetallePedidoCreate(DetallePedidoBase):
     pass
 
 
-class DetallePedido(DetallePedidoBase):
+class DetallePedido(BaseModel):
     id: int
+    id_producto: int
+    cantidad: int
+    precio_unitario: float
+    subtotal: float
+    producto: Optional[Producto] = None   # 👈 agregar esto
+
+    class Config:
+        from_attributes = True   # antes era orm_mode
+
 
     class Config:
         orm_mode = True
@@ -80,3 +89,6 @@ class Pedido(PedidoBase):
 
     class Config:
         orm_mode = True
+        
+class EstadoUpdate(BaseModel):
+    estado: str

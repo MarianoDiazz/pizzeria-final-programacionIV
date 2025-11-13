@@ -12,11 +12,15 @@ app = FastAPI(title="API Pizzería Don Mariano 🍕")
 # CORS para conectar con React
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 @app.get("/")
@@ -66,8 +70,33 @@ def crear_pedido(pedido: schemas.PedidoCreate, db: Session = Depends(get_db)):
 
 
 @app.put("/pedidos/{pedido_id}/estado")
-def cambiar_estado_pedido(pedido_id: int, nuevo_estado: str, db: Session = Depends(get_db)):
-    pedido = crud.actualizar_estado_pedido(db, pedido_id, nuevo_estado)
+def cambiar_estado_pedido(
+    pedido_id: int,
+    data: schemas.EstadoUpdate,
+    db: Session = Depends(get_db)
+):
+    pedido = crud.actualizar_estado_pedido(db, pedido_id, data.estado)
     if not pedido:
         raise HTTPException(status_code=404, detail="Pedido no encontrado")
     return pedido
+
+# 🔥 ACTUALIZAR PRODUCTO
+@app.put("/productos/{id}", response_model=schemas.Producto)
+def actualizar_producto(id: int, data: schemas.ProductoBase, db: Session = Depends(get_db)):
+    producto = db.query(models.Producto).filter(models.Producto.id == id).first()
+
+    if not producto:
+        raise HTTPException(status_code=404, detail="Producto no encontrado")
+
+    # Actualizar campos
+    producto.nombre = data.nombre
+    producto.descripcion = data.descripcion
+    producto.precio = data.precio
+    producto.id_categoria = data.id_categoria
+    producto.imagen_url = data.imagen_url
+    producto.disponible = data.disponible
+
+    db.commit()
+    db.refresh(producto)
+
+    return producto

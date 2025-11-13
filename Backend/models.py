@@ -28,6 +28,8 @@ class Producto(Base):
 
     categoria = relationship("Categoria", back_populates="productos")
     detalles = relationship("DetallePedido", back_populates="producto")
+    detalles = relationship("DetallePedido", back_populates="producto", lazy="joined")
+
 
 
 # Tabla: Pedidos
@@ -41,7 +43,8 @@ class Pedido(Base):
     estado = Column(String, default="Pendiente")
     fecha = Column(DateTime, default=datetime.utcnow)
 
-    detalles = relationship("DetallePedido", back_populates="pedido")
+    detalles = relationship("DetallePedido", back_populates="pedido", lazy="joined")
+
 
 
 # Tabla: Detalle de pedidos
@@ -57,3 +60,6 @@ class DetallePedido(Base):
 
     pedido = relationship("Pedido", back_populates="detalles")
     producto = relationship("Producto", back_populates="detalles")
+    producto = relationship("Producto", back_populates="detalles", lazy="joined")
+
+    

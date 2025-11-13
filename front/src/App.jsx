@@ -3,21 +3,20 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Checkout from "./pages/Checkout";
 
-function App() {
+export default function App() {
   return (
     <Router>
       <Header />
-      <nav style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+      <nav className="flex gap-6 justify-center py-2 bg-orange-500 text-white font-semibold">
         <Link to="/">Inicio</Link>
         <Link to="/admin">Panel Admin</Link>
       </nav>
-      <h1 className="text-4xl font-bold text-red-500 underline">
-        Tailwind funcionando 🍕🔥
-      </h1>
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
 
@@ -25,5 +24,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;
