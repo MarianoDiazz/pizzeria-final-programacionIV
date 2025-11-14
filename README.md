@@ -1,5 +1,5 @@
 <p align="center">
-  <h1>🍕 Pizzería Don Mariano — Sistema Web Fullstack</h1>
+  <h1>🍕 Pizzería Bella Napoli — Sistema Web Fullstack</h1>
 </p>
 <p align="center">
   <b>Aplicación web completa con React + FastAPI + SQLite</b><br>
