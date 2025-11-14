@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Header from "./components/Header";
@@ -8,18 +8,17 @@ import Checkout from "./pages/Checkout";
 export default function App() {
   return (
     <Router>
+      {/* Header unificado (incluye logo, carrito y navegación) */}
       <Header />
-      <nav className="flex gap-6 justify-center py-2 bg-orange-500 text-white font-semibold">
-        <Link to="/">Inicio</Link>
-        <Link to="/admin">Panel Admin</Link>
-      </nav>
 
+      {/* Rutas principales */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
 
+      {/* Footer */}
       <Footer />
     </Router>
   );
